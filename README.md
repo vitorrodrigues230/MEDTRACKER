@@ -35,19 +35,5 @@ git clone [https://github.com/vitorrodrigues230/MEDTRACKER.git](https://github.c
 cd MEDTRACKER
 pip install -r requirements.txt
 
-## ⚙️ 2. Executando Testes
-
-Para garantir que a lógica do sistema permaneça íntegra após qualquer modificação, utilizamos o **Pytest**. Siga os passos abaixo para rodar a bateria de testes localmente:
-
-1. **Certifique-se de estar com o ambiente virtual ativo.**
-2. **Execute o comando abaixo no terminal da raiz do projeto:**
-
-```bash
-python -m pytest
-
-## 👨‍💻 Autor
-
-**Vitor Rodrigues Ferreira**
-* Estudante de Engenharia de Software no UniCEUB.
 
 
