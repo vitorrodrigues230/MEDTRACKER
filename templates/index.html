@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedTracker Web</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; padding: 20px; display: flex; justify-content: center; }
+        .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 100%; max-width: 500px; }
+        h1 { color: #1a73e8; text-align: center; margin-top: 0;}
+        form { display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px;}
+        input { padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 16px; }
+        button { background-color: #1a73e8; color: white; border: none; padding: 12px; border-radius: 6px; font-size: 16px; cursor: pointer; font-weight: bold; }
+        button:hover { background-color: #1557b0; }
+        .card { background: #f8f9fa; border-left: 4px solid #34a853; padding: 15px; margin-bottom: 10px; border-radius: 4px; }
+        .erro { color: red; font-size: 14px;}
+        .local { color: #555; font-size: 14px; margin-top: 5px;}
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>💊 MedTracker</h1>
+        
+        <form method="POST">
+            <input type="text" name="nome" placeholder="Nome do Medicamento" required>
+            <input type="time" name="horario" required>
+            <input type="text" name="cep" placeholder="CEP do Idoso (ex: 70790075)" required>
+            <button type="submit">Agendar e Buscar Endereço</button>
+        </form>
+
+        <h2>Agendamentos do Dia:</h2>
+        
+        <div>
+            {% for med in medicamentos %}
+            <div class="card">
+                <strong>{{ med.nome }}</strong> - ⏰ {{ med.horario }}
+                
+                <div class="local">
+                    📍 
+                    {% if med.endereco.erro %}
+                        <span class="erro">{{ med.endereco.erro }}</span>
+                    {% else %}
+                        {{ med.endereco.logradouro }}, {{ med.endereco.cidade }} - {{ med.endereco.uf }}
+                    {% endif %}
+                </div>
+            </div>
+            {% else %}
+            <p style="color: #777;">Nenhum medicamento agendado ainda.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>
